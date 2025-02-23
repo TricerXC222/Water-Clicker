@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Water Clicker</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="mainMenu" class="main-menu">
+    <h1>Water Clicker</h1>
+    <button class="main-menu-button" data-page="game">Play Game</button>
+    <button class="main-menu-button" data-page="settings">Settings</button>
+    <button class="main-menu-button" data-page="credits">Credits</button>
+    <button class="main-menu-button" data-page="help">Help</button>
+  </div>
+  
+  <div class="menu-button">☰</div>
+  <div class="menu">
+    <div class="menu-content">
+      <h2>Menu</h2>
+      <button class="menu-item" data-page="game">Game</button>
+      <button class="menu-item" data-page="settings">Settings</button>
+      <button class="menu-item" data-page="credits">Credits</button>
+      <button class="menu-item" data-page="help">Help</button>
+      <div id="menuPlayersList" style="display: none">
+        <h3>Online Players</h3>
+        <ul id="menuPlayers"></ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page" id="settings">
+    <h2>Settings</h2>
+    <div class="setting-item">
+      <label>Sound Effects:</label>
+      <input type="checkbox" id="soundToggle">
+    </div>
+    <div class="setting-item">
+      <label>Animation Speed:</label>
+      <select id="animationSpeed">
+        <option value="slow">Slow</option>
+        <option value="normal" selected>Normal</option>
+        <option value="fast">Fast</option>
+      </select>
+    </div>
+    <h3>Experimental</h3>
+    <div class="setting-item">
+      <label>Multiplayer</label>
+      <input type="checkbox" id="multiplayerToggle">
+      <span class="experimental-tag">Beta</span>
+    </div>
+    <div id="multiplayerSection">
+      <h4>Other Players</h4>
+      <ul id="playersList"></ul>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-websocket/2.0.1/angular-websocket.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.87.0/phaser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  </div>
+
+  <div class="page" id="credits">
+    <h2>Credits</h2>
+    <p>Water Clicker Game</p>
+    <p>Created by: TricerXC</p>
+    <p>Version 1.0</p>
+  </div>
+
+  <div class="page" id="help">
+    <h2>Help</h2>
+    <ul>
+      <li>Click the water drop to collect water</li>
+      <li>Buy workers to automate water collection</li>
+      <li>Ascend when you have enough drops</li>
+      <li>Use ascension points to buy upgrades</li>
+    </ul>
+  </div>
+
+  <div class="page active" id="game">
+    <div class="container">
+    <h1>Water Drops: <span id="drops">0</span></h1>
+    <h2>Per Second: <span id="dropsPerSecond">0</span></h2>
+    <button id="waterButton">💧</button>
+    <div class="game-right">
+      <div class="upgrades">
+        <h3>Upgrades</h3>
+        <button id="buyWorker">
+          👷 Buy Water Worker
+          <div class="upgrade-info">
+            Cost: <span id="workerCost">10</span> drops
+            <br>
+            Owned: <span id="workerCount">0</span>
+          </div>
+        </button>
+      </div>
+      <div class="ascension">
+        <h3>Ascension Points: <span id="ascensionPoints">0</span></h3>
+        <h4>Times Ascended: <span id="ascensionCount">0</span></h4>
+        <button id="ascendButton">🌟 Ascend (Requires 1000 drops)</button>
+        <div class="ascension-store">
+          <h3>Ascension Store</h3>
+          <button id="buyClickMultiplier">
+            ⚡️ Upgrade Click Power
+            <div class="upgrade-info">
+              Cost: <span id="clickMultiplierCost">1</span> AP
+              <br>
+              Current: x<span id="clickMultiplier">1</span>
+            </div>
+          </button>
+          <button id="buyCursorUpgrade">
+            🖱️ Buy Auto Cursor
+            <div class="upgrade-info">
+              Cost: <span id="cursorUpgradeCost">5</span> AP
+              <br>
+              Owned: <span id="cursorCount">0</span>
+            </div>
+          </button>
+          <button id="buyAutoClickMultiplier">
+            🔄 Upgrade Auto Click Power
+            <div class="upgrade-info">
+              Cost: <span id="autoMultiplierCost">1</span> AP
+              <br>
+              Current: x<span id="autoMultiplier">1</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="version-tag">v1.0.0</div>
+  <script src="script.js"></script>
+</body>
+</html>
